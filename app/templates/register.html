@@ -38,6 +38,43 @@
             <div class="col-xs-4">
                 <input type="date" class="form-control" paceholder="DOB" name="DOB" ng-model="userDetails.DOB"  > </div>
         </div>
+        
+       <!--   
+        <div class="form-group">
+            <label for="inputEmail" class="control-label col-xs-2">State</label>
+            <div class="col-xs-4">
+                <select class="form-control" 
+                        ng-model="selectState"
+                        ng-options=" state.value group by state.countryCode for state in states"        >
+                    <option value="">Please Select</option>
+                </select>
+            </div>
+        </div>
+
+    -->
+    
+
+        <div class="form-group">
+            <label for="inputEmail" class="control-label col-xs-2">Country</label>
+            <div class="col-xs-4">
+                <select class="form-control" name="country" ng-required="true" ng-change="loadStates()" ng-model="selectedCountry" ng-options="country.value for country in countries">
+                    <option value="">Please Select</option>
+                </select>
+                <p ng-show="register.country.$error.required">Please select Country</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputEmail" class="control-label col-xs-2">State</label>
+            <div class="col-xs-4">
+                <select class="form-control" ng-model="userDetails.selectedState" ng-options="item.key for item in stateList">
+                    <option value="">Please Select</option>
+                </select>
+            </div>
+        </div>
+
+        
       
         <div class="form-group">
             <div class=" col-xs-offset-2 col-xs-4">
@@ -49,7 +86,7 @@
         </div>
           <div class="form-group">
             <div class=" col-xs-offset-2 col-xs-4">
-                <button type="button" class="btn btn-primary" ng-click="registerUser()" ng-if="userDetails.firstName && userDetails.lastName" ng-disabled="!userDetails.terms">Register</button>
+                <button type="button" class="btn btn-primary" ng-click="registerUser()" ng-if="userDetails.firstName" ng-disabled="!userDetails.terms">Register</button>
             </div>
         </div>
         
