@@ -1,7 +1,7 @@
 (function () {
     'use strict'
     //module initilization
-    angular.module("vehicleApp", ["home","login", "register", "ui.router"])
+    angular.module("vehicleApp", ["home","login", "register", "ui.router", "vehicles"  ])
         //code goes here.our 
         //consuming the modeule
     
@@ -16,6 +16,11 @@
               url: "/home"
                 
             };
+            var vehiclesObj = {
+                templateUrl: basePath + "vehicles.html",
+                controller:"vehicleCtrl",
+                url: "/vehicle"
+            };
             var registerObj = {
                 templateUrl: basePath + "register.html",
                 controller:"registerCtrl",
@@ -25,8 +30,10 @@
                 templateUrl: basePath + "login.html",
                 url: "/login"
             };
+             
             
             $stateProvider.state("home", homeObj);
+            $stateProvider.state("vehicles", vehiclesObj);
             $stateProvider.state("login", loginObj);
             $stateProvider.state("register", registerObj);
                     
