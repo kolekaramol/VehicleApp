@@ -1,7 +1,7 @@
 (function(){
     angular.module("vehicles")
-    .controller("vehicleCtrl",["$scope","vehicleSvc",
-                           function($scope,vehicleSvc){
+    .controller("vehicleCtrl",["$scope","vehicleSvc","$rootScope",
+                           function($scope,vehicleSvc, $rootScope){
     
                      
     vehicleSvc.getVehicles()
@@ -48,7 +48,32 @@
                         min: 1000000,
                         max: 9900000
                 }
-                          ];                                    
+                          ];  
+        
+             $scope.selectVehicle = function (vehicle) {
+                            vehicle.isSelected = true;
+                            $rootScope.$broadcast("VEHICLE-ADDED", {
+                                veh: vehicle
+                            });
+                        };
+                        $scope.removeVehicle = function (vehicle) {
+                            vehicle.isSelected = false;
+                            $rootScope.$broadcast("VEHICLE-REMOVED", {
+                                veh: vehicle
+                            });
+                        };
+
+                               
+                               
+                $scope.$watch("searchByModel", function (newVal, oldVal) {
+                    console.log("Old Value is: " + oldVal);
+                    console.log("New Value is: " + newVal)
+                });
+
+                setTimeout(function () {
+                    $scope.searchByModel="WagonR";
+                    $scope.$apply();
+                },5000);                           
     
         
     }]);
